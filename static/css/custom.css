@@ -1,0 +1,39 @@
+/* static/css/custom.css */
+
+/* Auto-scroll to the bottom */
+#chat-window {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Custom chat bubble styles */
+.chat-bubble {
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+.chat-bubble-user {
+  background-color: #dcf8c6;
+  margin-left: auto;
+}
+.chat-bubble-bot {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+/* Custom scrollbar styles */
+#chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+#chat-window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+#chat-window::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+#chat-window::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

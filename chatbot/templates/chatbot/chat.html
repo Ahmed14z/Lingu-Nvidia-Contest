@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    {% load static %}
+    <link href="{% static 'css/tailwind-built.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">
+        Chat with our Bot
+      </h1>
+      <div id="chat-window" class="space-y-4 mb-6 p-4 bg-gray-100 rounded-lg">
+        {% for message in messages %} {% if message.type == 'user' %}
+        <div class="flex justify-end">
+          <div class="chat-bubble chat-bubble-user">{{ message.text }}</div>
+        </div>
+        {% else %}
+        <div class="flex justify-start">
+          <div class="chat-bubble chat-bubble-bot">{{ message.text }}</div>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+      <form method="post" class="space-y-4" id="chat-form">
+        {% csrf_token %}
+        <textarea
+          name="user_input"
+          rows="4"
+          class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Type your message here..."
+          id="user-input"
+        ></textarea>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+    <script>
+      // Auto-scroll to the bottom
+      const chatWindow = document.getElementById("chat-window");
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      // Observe changes and scroll to the bottom when new messages are added
+      const observer = new MutationObserver(() => {
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      });
+      observer.observe(chatWindow, { childList: true });
+
+      // Submit form on Enter key press
+      const chatForm = document.getElementById("chat-form");
+      const userInput = document.getElementById("user-input");
+
+      userInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          chatForm.submit();
+        }
+      });
+    </script>
+  </body>
+</html>

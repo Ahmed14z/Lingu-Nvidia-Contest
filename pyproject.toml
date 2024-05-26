@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mychatbot"
+version = "0.1.0"
+description = "A chatbot using Django and NVIDIA AI Foundation Endpoints"
+authors = ["Ahmed Mansy <ahmedeslam1582002@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+langchain-nvidia-ai-endpoints = "^0.0.18"
+python-dotenv = "^1.0.1"
+tailwindcss = "^0.0.1"
+django-tailwind = "^3.8.0"
+django-libsass = "^0.9"
+langchain = "^0.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
